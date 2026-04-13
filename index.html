@@ -3,78 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morggt - Official</title>
+    <title>Проекты - Morggt Admin</title>
     <style>
+        :root {
+            --accent: #9146ff;
+            --bg-dark: #0f0f12;
+        }
         body {
             margin: 0; padding: 0;
-            background: linear-gradient(135deg, #0f2027 0%, #203a43 25%, #2c5364 50%, #9146ff 100%);
+            background: linear-gradient(135deg, #0f2027 0%, #2c5364 50%, #9146ff 100%);
             background-attachment: fixed;
             color: white; font-family: 'Segoe UI', sans-serif;
             display: flex; flex-direction: column; align-items: center; min-height: 100vh;
         }
-        nav {
-            width: 100%; padding: 20px 0;
-            display: flex; justify-content: center; gap: 35px;
-            background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(15px);
-            position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(145, 70, 255, 0.3);
-        }
-        nav a {
-            color: white; text-decoration: none; font-weight: 700; 
-            opacity: 0.8; transition: 0.3s; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
-        }
-        nav a:hover { opacity: 1; color: #bf94ff; text-shadow: 0 0 10px #9146ff; }
 
-        .main-container { display: flex; align-items: center; justify-content: center; flex-grow: 1; padding: 40px 20px; }
-        .card {
-            background: rgba(15, 15, 20, 0.9);
-            padding: 50px; border-radius: 40px;
-            display: flex; align-items: center; gap: 50px;
-            box-shadow: 0 0 60px rgba(145, 70, 255, 0.2);
-            border: 1px solid rgba(145, 70, 255, 0.2);
-            max-width: 900px;
-        }
-        .profile-img {
-            width: 300px; height: 300px; border-radius: 30px; border: 4px solid #9146ff;
-            object-fit: cover; box-shadow: 0 0 30px rgba(145, 70, 255, 0.5);
-        }
-        .info-side { text-align: left; }
-        h1 { margin: 0; font-size: 55px; font-weight: 900; letter-spacing: -2px; color: #fff; }
-        .subtitle { color: #bf94ff; margin-bottom: 35px; font-size: 18px; text-transform: uppercase; font-weight: bold; }
-        .links { display: flex; flex-direction: column; gap: 15px; }
-        .link {
-            text-align: center; color: white; text-decoration: none;
-            padding: 18px; border-radius: 15px; font-weight: 800; transition: 0.3s; text-transform: uppercase;
-        }
-        .link:hover { transform: scale(1.03); box-shadow: 0 0 20px rgba(145, 70, 255, 0.4); }
-        .twitch { background: #9146ff; }
-        .tg { background: #0088cc; }
-        .yt { background: #ff0000; }
+        /* Навигация */
+        nav { width: 100%; padding: 20px 0; display: flex; justify-content: center; gap: 35px; background: rgba(0,0,0,0.6); backdrop-filter: blur(15px); border-bottom: 2px solid var(--accent); }
+        nav a { color: white; text-decoration: none; font-weight: 700; opacity: 0.8; transition: 0.3s; text-transform: uppercase; font-size: 13px; }
+        nav a:hover { opacity: 1; color: #bf94ff; text-shadow: 0 0 10px var(--accent); }
 
-        @media (max-width: 850px) {
-            .card { flex-direction: column; text-align: center; }
-            .profile-img { width: 220px; height: 220px; }
+        /* Панель админа (скрыта по умолчанию) */
+        #adminPanel {
+            display: none;
+            width: 100%; background: #ff4646; color: white; padding: 10px;
+            text-align: center; font-weight: bold; position: sticky; top: 0; z-index: 200;
+            box-shadow: 0 5px 20px rgba(255, 70, 70, 0.4);
         }
+
+        .container { width: 90%; max-width: 1000px; margin-top: 50px; }
+        .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        
+        .create-btn { 
+            background: var(--accent); color: white; padding: 15px 30px; border-radius: 12px; 
+            text-decoration: none; font-weight: 900; transition: 0.3s; 
+            box-shadow: 0 0 20px rgba(145, 70, 255, 0.6); border: none; cursor: pointer;
+        }
+        .create-btn:hover { transform: scale(1.05); background: #a970ff; }
+
+        /* Сетка проектов */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
+        .project-card { 
+            background: rgba(15, 15, 20, 0.95); padding: 30px; border-radius: 25px; 
+            border: 2px solid rgba(145, 70, 255, 0.3); position: relative;
+            transition: 0.3s;
+        }
+        .project-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        
+        .project-card h3 { margin: 0 0 10px 0; color: #bf94ff; font-size: 26px; }
+        .author-tag { display: inline-block; background: rgba(145, 70, 255, 0.3); padding: 6px 15px; border-radius: 8px; font-size: 12px; color: #fff; margin-bottom: 15px; font-weight: bold; }
+        
+        /* Кнопки управления (видны только админу) */
+        .admin-controls { display: none; margin-top: 20px; border-top: 1px solid #333; padding-top: 15px; }
+        .del-btn { background: #ff4646; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+
+        .login-trigger { margin: 50px 0; opacity: 0.2; cursor: pointer; transition: 0.3s; }
+        .login-trigger:hover { opacity: 1; color: var(--accent); }
     </style>
 </head>
 <body>
+
+    <!-- Статус админа -->
+    <div id="adminPanel">РЕЖИМ АДМИНИСТРАТОРА ВКЛЮЧЕН (CHARE)</div>
+
     <nav>
         <a href="index.html">Главная</a>
         <a href="projects.html">Проекты подписчиков</a>
         <a href="fans.html">Страница подписчиков</a>
     </nav>
-    <div class="main-container">
-        <div class="card">
-            <img src="Morggt.png.png" alt="Morggt" class="profile-img">
-            <div class="info-side">
-                <h1>MORGGT</h1>
-                <div class="subtitle">Official Streamer</div>
-                <div class="links">
-                    <a href="https://twitch.tv" target="_blank" class="link twitch">Twitch Channel</a>
-                    <a href="https://t.me" target="_blank" class="link tg">Telegram Channel</a>
-                    <a href="https://youtube.com" target="_blank" class="link yt">YouTube Shorts</a>
+
+    <div class="container">
+        <div class="header-row">
+            <h1 style="font-size: 40px; text-shadow: 0 0 20px rgba(145,70,255,0.4);">Проекты комьюнити</h1>
+            <button class="create-btn" onclick="alert('Форма откроется здесь!')">+ Создать проект</button>
+        </div>
+
+        <div class="project-grid" id="grid">
+            <!-- Пример карточки -->
+            <div class="project-card">
+                <span class="author-tag">От: Moderator_Chare</span>
+                <h3>Система Админки</h3>
+                <p>Теперь модератор может управлять списком проектов прямо с сайта (визуально).</p>
+                <div class="admin-controls">
+                    <button class="del-btn" onclick="this.parentElement.parentElement.remove()">Удалить проект</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="login-trigger" onclick="tryAdmin()">🔒 Вход для состава</div>
+
+    <script>
+        function tryAdmin() {
+            let pass = prompt("Введите код доступа:");
+            if (pass === "Chare") {
+                activateAdmin();
+            } else {
+                alert("Неверный код!");
+            }
+        }
+
+        function activateAdmin() {
+            // Показываем панель сверху
+            document.getElementById('adminPanel').style.display = 'block';
+            
+            // Показываем кнопки управления в карточках
+            let controls = document.getElementsByClassName('admin-controls');
+            for(let i=0; i<controls.length; i++) {
+                controls[i].style.display = 'block';
+            }
+            
+            // Меняем цвет фона для наглядности
+            document.body.style.background = "linear-gradient(135deg, #1a0f20 0%, #2c5364 50%, #ff4646 100%)";
+            
+            alert("Режим администратора активирован. Вы можете визуально удалять проекты.");
+        }
+    </script>
 </body>
 </html>
