@@ -12,7 +12,6 @@
             color: white; font-family: 'Segoe UI', Roboto, sans-serif;
             display: flex; flex-direction: column; align-items: center; min-height: 100vh;
         }
-
         nav {
             width: 100%; padding: 20px 0;
             display: flex; justify-content: center; gap: 40px;
@@ -24,78 +23,60 @@
             opacity: 0.7; transition: 0.3s; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px;
         }
         nav a:hover { opacity: 1; color: #bf94ff; text-shadow: 0 0 15px #9146ff; }
-
         .main-container {
-            display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            flex-grow: 1; padding: 60px 20px; width: 100%; box-sizing: border-box;
+            display: flex; align-items: center; justify-content: center; flex-grow: 1; padding: 40px 20px;
         }
-
         .card {
             background: rgba(20, 20, 23, 0.95);
             padding: 50px; border-radius: 40px;
             display: flex; align-items: center; gap: 50px;
             box-shadow: 0 30px 70px rgba(0,0,0,0.8);
             border: 1px solid rgba(255,255,255,0.08);
-            max-width: 900px; width: 100%; box-sizing: border-box;
+            max-width: 900px;
         }
-
         .profile-img {
             width: 320px; height: 320px;
             border-radius: 35px; border: 5px solid #9146ff;
-            object-fit: cover; 
-            box-shadow: 0 0 40px rgba(145, 70, 255, 0.5);
-            background: #2a2a2a; /* Фон, если картинка не прогрузится */
+            object-fit: cover; box-shadow: 0 0 40px rgba(145, 70, 255, 0.5);
         }
-
         .info-side { text-align: left; flex: 1; }
-        h1 { margin: 0 0 10px 0; font-size: 52px; font-weight: 900; letter-spacing: -2px; line-height: 1; }
-        .subtitle { color: #bf94ff; margin-bottom: 35px; font-size: 18px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; }
-        
+        h1 { margin: 0 0 10px 0; font-size: 52px; font-weight: 900; letter-spacing: -2px; }
+        .subtitle { color: #bf94ff; margin-bottom: 35px; font-size: 18px; text-transform: uppercase; }
         .links { display: flex; flex-direction: column; gap: 15px; }
         .link {
             text-align: center; color: white; text-decoration: none;
-            padding: 18px; border-radius: 15px; font-weight: 800;
-            transition: 0.3s; text-transform: uppercase; font-size: 15px;
-            letter-spacing: 1px;
+            padding: 18px; border-radius: 15px; font-weight: 800; transition: 0.3s; text-transform: uppercase;
         }
         .link:hover { transform: translateX(10px); filter: brightness(1.2); }
-        
         .twitch { background: #9146ff; }
         .tg { background: #0088cc; }
         .yt { background: #ff0000; }
-
         @media (max-width: 850px) {
-            .card { flex-direction: column; text-align: center; padding: 40px 25px; }
-            .info-side { text-align: center; width: 100%; }
+            .card { flex-direction: column; text-align: center; }
             .profile-img { width: 220px; height: 220px; }
         }
     </style>
 </head>
 <body>
-
     <nav>
         <a href="index.html">Главная</a>
         <a href="projects.html">Проекты подписчиков</a>
         <a href="fans.html">Страница подписчиков</a>
     </nav>
-
     <div class="main-container">
         <div class="card">
-            <!-- ПРОВЕРЬ НАЗВАНИЕ ФАЙЛА ТУТ: -->
-            <img src="avatar.PNG" alt="Morggt" class="profile-img">
-            
+            <!-- НОВОЕ НАЗВАНИЕ ФОТО -->
+            <img src="Morggt.png.png" alt="Morggt" class="profile-img">
             <div class="info-side">
                 <h1>MORGGT</h1>
                 <div class="subtitle">Official Streamer</div>
-                
                 <div class="links">
-                    <a href="https://twitch.tv" target="_blank" class="link twitch">Twitch</a>
+                    <a href="https://twitch.tv" target="_blank" class="link twitch">Twitch Channel</a>
                     <a href="https://t.me" target="_blank" class="link tg">Telegram</a>
                     <a href="https://youtube.com" target="_blank" class="link yt">YouTube</a>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 </html>
