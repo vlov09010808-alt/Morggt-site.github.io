@@ -5,25 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Проекты - Morggt</title>
     <style>
-        body { margin: 0; padding: 0; background: linear-gradient(135deg, #1e3c72 0%, #6a11cb 100%); background-attachment: fixed; color: white; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        nav { width: 100%; padding: 20px 0; display: flex; justify-content: center; gap: 30px; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); }
-        nav a { color: white; text-decoration: none; font-weight: 600; opacity: 0.7; transition: 0.3s; font-size: 13px; text-transform: uppercase; }
+        body {
+            margin: 0; padding: 0;
+            background: linear-gradient(135deg, #0f2027 0%, #2c5364 50%, #9146ff 100%);
+            background-attachment: fixed;
+            color: white; font-family: 'Segoe UI', sans-serif;
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+        }
+        nav { width: 100%; padding: 20px 0; display: flex; justify-content: center; gap: 35px; background: rgba(0,0,0,0.5); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(145, 70, 255, 0.3); }
+        nav a { color: white; text-decoration: none; font-weight: 700; opacity: 0.8; transition: 0.3s; font-size: 13px; text-transform: uppercase; }
         nav a:hover { opacity: 1; color: #bf94ff; }
         
-        .header-box { width: 90%; max-width: 1000px; display: flex; justify-content: space-between; align-items: center; margin-top: 40px; }
-        .create-btn { background: #9146ff; color: white; padding: 12px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; transition: 0.3s; }
-        .create-btn:hover { background: #772ce8; transform: scale(1.05); }
+        .container { width: 90%; max-width: 1000px; margin-top: 50px; }
+        .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .create-btn { background: #9146ff; color: white; padding: 15px 30px; border-radius: 12px; text-decoration: none; font-weight: 900; transition: 0.3s; box-shadow: 0 0 15px rgba(145, 70, 255, 0.4); }
+        .create-btn:hover { transform: scale(1.05); background: #a970ff; }
 
-        .project-list { width: 90%; max-width: 1000px; margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 100%)); gap: 20px; }
-        .project-card { background: rgba(20, 20, 23, 0.9); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); position: relative; }
-        .project-card h3 { margin: 0 0 10px 0; color: #bf94ff; }
-        .project-card .author { font-size: 14px; color: #adadb8; margin-bottom: 10px; }
-        
-        /* Скрытая форма */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-content { background: #18181b; padding: 40px; border-radius: 30px; width: 90%; max-width: 500px; border: 1px solid #9146ff; }
-        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 10px; border: 1px solid #333; background: #0a0a0a; color: white; box-sizing: border-box; }
-        .close-btn { color: #adadb8; cursor: pointer; float: right; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .project-card { background: rgba(15, 15, 20, 0.9); padding: 30px; border-radius: 25px; border: 1px solid rgba(145, 70, 255, 0.3); }
+        .project-card h3 { margin: 0 0 10px 0; color: #bf94ff; font-size: 24px; }
+        .project-card p { color: #adadb8; line-height: 1.6; }
+        .author-tag { display: inline-block; background: rgba(145, 70, 255, 0.2); padding: 5px 12px; border-radius: 8px; font-size: 12px; color: #bf94ff; margin-bottom: 15px; }
+
+        .admin-link { margin-top: auto; padding: 20px; opacity: 0.3; cursor: pointer; font-size: 12px; }
+        .admin-link:hover { opacity: 1; }
     </style>
 </head>
 <body>
@@ -31,50 +36,33 @@
         <a href="index.html">Главная</a>
         <a href="projects.html">Проекты подписчиков</a>
         <a href="fans.html">Страница подписчиков</a>
-        <a href="#" onclick="loginAdmin()">Админ</a>
     </nav>
 
-    <div class="header-box">
-        <h1>Проекты</h1>
-        <a href="#" class="create-btn" onclick="openModal()">+ Создать проект</a>
-    </div>
+    <div class="container">
+        <div class="header-row">
+            <h1>Проекты комьюнити</h1>
+            <a href="https://formspree.io" class="create-btn">+ Предложить проект</a>
+        </div>
 
-    <div class="project-list" id="projectList">
-        <!-- Пример проекта -->
-        <div class="project-card">
-            <div class="author">От: Moderator_Chare</div>
-            <h3>Сайт для Morggt</h3>
-            <p>Первая версия официального хаба для ссылок.</p>
-            <div class="author">Связь: Telegram</div>
+        <div class="project-grid">
+            <div class="project-card">
+                <span class="author-tag">От: Moderator_Chare</span>
+                <h3>Официальный сайт</h3>
+                <p>Мы запустили этот сайт! Теперь у Morggt есть крутой хаб со всеми ссылками и проектами.</p>
+            </div>
+            <!-- Сюда добавляй новые карточки проектов -->
         </div>
     </div>
 
-    <!-- Модальное окно создания -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">✖ Закрыть</span>
-            <h2>Новый проект</h2>
-            <form action="https://formspree.io" method="POST">
-                <input type="text" name="nick" placeholder="Ваш никнейм" required>
-                <input type="text" name="title" placeholder="Название проекта" required>
-                <textarea name="desc" placeholder="Описание проекта" required></textarea>
-                <input type="text" name="contact" placeholder="Средство связи (ТГ/ВК)" required>
-                <button type="submit" style="width:100%; padding:15px; background:#9146ff; color:white; border:none; border-radius:10px; font-weight:bold; cursor:pointer;">Отправить на модерацию</button>
-            </form>
-        </div>
-    </div>
+    <div class="admin-link" onclick="checkAdmin()">Вход для модератора</div>
 
     <script>
-        function openModal() { document.getElementById('modal').style.display = 'flex'; }
-        function closeModal() { document.getElementById('modal').style.display = 'none'; }
-        
-        function loginAdmin() {
-            let pass = prompt("Введите пароль админа:");
+        function checkAdmin() {
+            let pass = prompt("Пароль доступа:");
             if (pass === "Chare") {
-                alert("Доступ разрешен! Теперь вы можете добавлять проекты (через код или форму).");
-                // Тут можно добавить логику редактирования
+                alert("Привет, админ! Чтобы добавить проект навсегда, просто скопируй блок 'project-card' в коде этого файла.");
             } else {
-                alert("Неверный пароль!");
+                alert("Отказ в доступе.");
             }
         }
     </script>
