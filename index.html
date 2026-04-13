@@ -3,89 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morggt - Official Hub</title>
+    <title>Morggt - Official</title>
     <style>
         body {
             margin: 0; padding: 0;
-            /* Возвращаем сочный и яркий градиент */
-            background: linear-gradient(135deg, #0f2027 0%, #203a43 25%, #2c5364 50%, #9146ff 100%);
+            /* Фиолетово-зеленый градиент */
+            background: linear-gradient(135deg, #4b0082 0%, #000000 50%, #00ff7f 100%);
             background-attachment: fixed;
-            color: white; font-family: 'Segoe UI', Roboto, sans-serif;
+            color: white; font-family: 'Segoe UI', sans-serif;
             display: flex; flex-direction: column; align-items: center; min-height: 100vh;
         }
 
-        /* Навигация */
         nav {
-            width: 100%; padding: 20px 0;
-            display: flex; justify-content: center; gap: 35px;
-            background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(15px);
-            position: sticky; top: 0; z-index: 100; border-bottom: 2px solid #9146ff;
+            width: 100%; padding: 15px 0;
+            display: flex; justify-content: center; gap: 25px;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 100; border-bottom: 2px solid #00ff7f;
         }
         nav a {
-            color: white; text-decoration: none; font-weight: 700; 
-            opacity: 0.8; transition: 0.3s; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
+            color: white; text-decoration: none; font-weight: 600; 
+            opacity: 0.8; transition: 0.3s; font-size: 12px; text-transform: uppercase;
         }
-        nav a:hover { opacity: 1; color: #bf94ff; text-shadow: 0 0 10px #9146ff; }
+        nav a:hover { opacity: 1; color: #00ff7f; }
 
-        /* Контентная область */
-        .main-container {
-            display: flex; align-items: center; justify-content: center; flex-grow: 1; padding: 60px 20px;
-        }
+        .main-container { display: flex; align-items: center; justify-content: center; flex-grow: 1; padding: 20px; }
 
+        /* Уменьшенная карточка */
         .card {
-            background: rgba(15, 15, 20, 0.9);
-            padding: 50px; border-radius: 40px;
-            display: flex; align-items: center; gap: 50px;
-            box-shadow: 0 0 60px rgba(145, 70, 255, 0.3);
-            border: 1px solid rgba(145, 70, 255, 0.2);
-            max-width: 950px;
-            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            padding: 30px; border-radius: 25px;
+            display: flex; align-items: center; gap: 30px;
+            box-shadow: 0 0 40px rgba(0, 255, 127, 0.2);
+            border: 1px solid rgba(0, 255, 127, 0.3);
+            max-width: 750px; width: 100%;
         }
 
-        /* Фото стримера */
+        /* Уменьшенное фото */
         .profile-img {
-            width: 320px; height: 320px;
-            border-radius: 35px; border: 5px solid #9146ff;
-            object-fit: cover; box-shadow: 0 0 40px rgba(145, 70, 255, 0.5);
-            transition: 0.4s;
+            width: 200px; height: 200px;
+            border-radius: 20px; border: 3px solid #00ff7f;
+            object-fit: cover; box-shadow: 0 0 20px rgba(0, 255, 127, 0.3);
         }
-        .profile-img:hover { transform: scale(1.02) rotate(-1deg); }
 
-        /* Текстовый блок */
         .info-side { text-align: left; flex: 1; }
-        h1 { margin: 0; font-size: 55px; font-weight: 900; letter-spacing: -2px; line-height: 1; }
-        .subtitle { color: #bf94ff; margin: 10px 0 25px 0; font-size: 18px; text-transform: uppercase; font-weight: bold; letter-spacing: 2px; }
+        h1 { margin: 0; font-size: 38px; font-weight: 900; color: #fff; line-height: 1; }
+        .subtitle { color: #00ff7f; margin: 5px 0 15px 0; font-size: 14px; text-transform: uppercase; font-weight: bold; }
         
-        /* Описание стримера */
         .description {
-            font-size: 16px; line-height: 1.6; color: #adadb8; margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 15px; border-left: 4px solid #9146ff;
+            font-size: 14px; line-height: 1.5; color: #adadb8; margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.03); padding: 15px; border-radius: 12px;
         }
 
-        /* Ссылки */
-        .links { display: flex; flex-direction: column; gap: 12px; }
+        /* Уменьшенные кнопки */
+        .links { display: flex; flex-direction: column; gap: 10px; }
         .link {
             text-align: center; color: white; text-decoration: none;
-            padding: 18px; border-radius: 12px; font-weight: 800;
-            transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
+            padding: 12px; border-radius: 10px; font-weight: 700;
+            transition: 0.3s; text-transform: uppercase; font-size: 12px; letter-spacing: 1px;
         }
-        .link:hover { transform: translateX(10px); box-shadow: 0 0 20px rgba(145, 70, 255, 0.4); filter: brightness(1.2); }
+        .link:hover { transform: scale(1.02); filter: brightness(1.1); }
         
         .twitch { background: #9146ff; }
         .tg { background: #0088cc; }
         .yt { background: #ff0000; }
 
-        /* Мобильная адаптация */
-        @media (max-width: 850px) {
-            .card { flex-direction: column; text-align: center; padding: 30px; }
-            .info-side { text-align: center; }
-            .profile-img { width: 240px; height: 240px; }
-            h1 { font-size: 42px; }
+        @media (max-width: 650px) {
+            .card { flex-direction: column; text-align: center; padding: 25px; }
+            .profile-img { width: 160px; height: 160px; }
+            h1 { font-size: 32px; }
         }
     </style>
 </head>
 <body>
-
     <nav>
         <a href="index.html">Главная</a>
         <a href="projects.html">Проекты подписчиков</a>
@@ -94,27 +83,20 @@
 
     <div class="main-container">
         <div class="card">
-            <!-- Убедись, что название файла на GitHub совпадает -->
             <img src="Morggt.png.png" alt="Morggt" class="profile-img">
-            
             <div class="info-side">
                 <h1>MORGGT</h1>
-                <div class="subtitle">Official Content Creator</div>
-                
+                <div class="subtitle">Official Streamer</div>
                 <div class="description">
-                    Тот самый стример, который не боится быть собой. 
-                    Создаю уникальный контент, общаюсь с лучшим комьюнити и двигаюсь только вперед. 
-                    Здесь ты найдешь все мои актуальные площадки и проекты наших ребят. Присоединяйся!
+                    Тот самый стример, который делает контент для души. Общаюсь с чатом, создаю движ и ценю каждого в своем комьюнити.
                 </div>
-                
                 <div class="links">
-                    <a href="https://twitch.tv" target="_blank" class="link twitch">Twitch Stream</a>
-                    <a href="https://t.me" target="_blank" class="link tg">Telegram (Новости)</a>
-                    <a href="https://youtube.com" target="_blank" class="link yt">YouTube Shorts</a>
+                    <a href="https://twitch.tv" target="_blank" class="link twitch">Twitch</a>
+                    <a href="https://t.me" target="_blank" class="link tg">Telegram</a>
+                    <a href="https://youtube.com" target="_blank" class="link yt">YouTube</a>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 </html>
