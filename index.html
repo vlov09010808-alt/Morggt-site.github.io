@@ -3,88 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morggt - Official</title>
+    <title>Morggt - Links</title>
     <style>
         body {
             margin: 0; padding: 0;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 30%, #9146ff 100%);
             background-attachment: fixed;
-            color: white; font-family: 'Segoe UI', sans-serif;
+            color: white; font-family: 'Segoe UI', Roboto, sans-serif;
             display: flex; justify-content: center; align-items: center; 
-            min-height: 100vh; overflow: hidden; /* Чтобы фигуры не создавали прокрутку */
-            position: relative;
+            min-height: 100vh; overflow: hidden; position: relative;
         }
 
-        /* Декоративные элементы фона */
+        /* Фоновые фигуры */
         .bg-shape {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 1;
-            animation: float 10s infinite linear;
+            position: absolute; background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(3px); border: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1; animation: float 12s infinite ease-in-out;
         }
-
-        .shape1 { width: 100px; height: 100px; top: 10%; left: 10%; border-radius: 20px; }
-        .shape2 { width: 150px; height: 150px; bottom: 15%; right: 10%; border-radius: 50%; }
-        .shape3 { width: 80px; height: 80px; top: 60%; left: 5%; transform: rotate(45deg); }
-        .shape4 { width: 200px; height: 2px; top: 30%; right: 5%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent); }
+        .shape1 { width: 80px; height: 80px; top: 15%; left: 15%; border-radius: 15px; }
+        .shape2 { width: 120px; height: 120px; bottom: 10%; right: 15%; border-radius: 50%; }
+        .shape3 { width: 250px; height: 1px; top: 40%; right: -50px; background: rgba(255,255,255,0.1); transform: rotate(-45deg); }
 
         @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-            100% { transform: translateY(0) rotate(0deg); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
         }
 
-        /* Сама карточка */
+        /* Компактная карточка */
         .card {
-            background: rgba(10, 10, 10, 0.95);
-            padding: 30px; border-radius: 25px;
-            display: flex; align-items: center; gap: 30px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            background: rgba(10, 10, 10, 0.96);
+            padding: 25px; border-radius: 20px;
+            display: flex; align-items: center; gap: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 700px; width: 90%;
-            position: relative; z-index: 10; /* Чтобы карточка была над фигурами */
+            max-width: 580px; width: 95%; position: relative; z-index: 10;
         }
 
         .profile-img {
-            width: 180px; height: 180px;
-            border-radius: 20px; border: 3px solid #9146ff;
-            object-fit: cover; box-shadow: 0 0 20px rgba(145, 70, 255, 0.3);
+            width: 140px; height: 140px;
+            border-radius: 15px; border: 2px solid #9146ff;
+            object-fit: cover; box-shadow: 0 0 15px rgba(145, 70, 255, 0.3);
         }
 
         .info-side { text-align: left; flex: 1; }
-        h1 { margin: 0; font-size: 36px; font-weight: 900; color: #fff; }
-        .subtitle { color: #bf94ff; margin: 5px 0 15px 0; font-size: 14px; text-transform: uppercase; font-weight: bold; }
+        h1 { margin: 0; font-size: 28px; font-weight: 900; letter-spacing: -1px; }
+        .subtitle { color: #bf94ff; margin: 2px 0 10px 0; font-size: 12px; text-transform: uppercase; font-weight: bold; }
         
-        .description { font-size: 14px; line-height: 1.5; color: #adadb8; margin-bottom: 20px; }
+        .description { font-size: 13px; line-height: 1.4; color: #adadb8; margin-bottom: 15px; }
 
-        .links { display: flex; flex-direction: column; gap: 10px; }
+        /* Маленькие кнопки в две колонки */
+        .links { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 8px; 
+        }
         .link {
             text-align: center; color: white; text-decoration: none;
-            padding: 12px; border-radius: 10px; font-weight: 700;
-            transition: 0.3s; text-transform: uppercase; font-size: 12px;
+            padding: 8px 5px; border-radius: 8px; font-weight: 700;
+            transition: 0.2s; text-transform: uppercase; font-size: 10px;
+            letter-spacing: 0.5px;
         }
-        .link:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        .link:hover { transform: translateY(-2px); filter: brightness(1.2); }
         
+        /* Цвета кнопок */
         .twitch { background: #9146ff; }
+        .kick { background: #53fc18; color: #000; }
         .tg { background: #0088cc; }
         .yt { background: #ff0000; }
+        .ds { background: #5865F2; }
+        .boosty { background: #f15f2c; }
+        .vk { background: #0077ff; }
 
-        @media (max-width: 600px) {
-            .card { flex-direction: column; text-align: center; padding: 25px; }
-            .profile-img { width: 150px; height: 150px; }
-            .bg-shape { display: none; } /* Убираем лишнее на мобилках */
+        @media (max-width: 500px) {
+            .card { flex-direction: column; text-align: center; padding: 20px; }
+            .info-side { width: 100%; }
+            .profile-img { width: 120px; height: 120px; }
+            .links { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Фоновые фигуры -->
     <div class="bg-shape shape1"></div>
     <div class="bg-shape shape2"></div>
     <div class="bg-shape shape3"></div>
-    <div class="bg-shape shape4"></div>
 
     <div class="card">
         <img src="Morggt.png.png" alt="Morggt" class="profile-img">
@@ -92,12 +94,17 @@
             <h1>MORGGT</h1>
             <div class="subtitle">Official Streamer</div>
             <div class="description">
-                Тот самый стример, который делает контент для души. Общаюсь с чатом, создаю движ и ценю каждого в своем комьюнити.
+                Тот самый стример. Общаюсь с чатом, создаю движ и ценю каждого в своем комьюнити.
             </div>
+            
             <div class="links">
-                <a href="https://twitch.tv" target="_blank" class="link twitch">Twitch</a>
-                <a href="https://t.me" target="_blank" class="link tg">Telegram</a>
-                <a href="https://youtube.com" target="_blank" class="link yt">YouTube</a>
+                <a href="https://www.twitch.tv/morggt_nya" target="_blank" class="link twitch">Twitch</a>
+                <a href="https://kick.com" target="_blank" class="link kick">Kick</a>
+                <a href="https://t.me/morggt23" target="_blank" class="link tg">Telegram</a>
+                <a href="https://youtube.com/@hero_26-rx8yx?si=jSfdjSD7-BMdtkzE" target="_blank" class="link yt">YouTube</a>
+                <a href="https://discord.gg/ZfT89W3F" target="_blank" class="link ds">Discord</a>
+                <a href="https://boosty.to/morggt" target="_blank" class="link boosty">Boosty</a>
+                <a href="https://vk.com/club235312167" target="_blank" class="link vk">VK Group</a>
             </div>
         </div>
     </div>
