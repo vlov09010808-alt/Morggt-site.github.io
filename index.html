@@ -14,79 +14,75 @@
             min-height: 100vh; overflow: hidden; position: relative;
         }
 
-        /* --- Анимация падающих звезд --- */
+        /* --- ПАДАЮЩИЕ ЗВЕЗДЫ --- */
         .star {
             position: absolute;
             background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.8));
-            height: 2px; width: 100px;
+            height: 2px; width: 150px;
             z-index: 1; opacity: 0;
-            animation: star-fall 4s infinite ease-in;
+            animation: star-fall 3s infinite linear;
         }
-        .star:nth-child(1) { top: 10%; left: -10%; animation-delay: 0s; }
-        .star:nth-child(2) { top: 30%; left: -15%; animation-delay: 1.5s; }
-        .star:nth-child(3) { top: 50%; left: -10%; animation-delay: 3s; }
-        .star:nth-child(4) { top: 70%; left: -20%; animation-delay: 0.5s; }
+        .star:nth-child(1) { top: 10%; left: -20%; animation-delay: 0s; }
+        .star:nth-child(2) { top: 40%; left: -20%; animation-delay: 1.2s; }
+        .star:nth-child(3) { top: 70%; left: -20%; animation-delay: 2.4s; }
 
         @keyframes star-fall {
             0% { transform: translateX(0) scaleX(0); opacity: 0; }
-            10% { opacity: 1; transform: translateX(100px) scaleX(1.5); }
+            20% { opacity: 1; transform: translateX(200px) scaleX(1); }
             100% { transform: translateX(120vw) scaleX(1); opacity: 0; }
         }
 
-        /* --- Фигурки на фоне --- */
+        /* --- ФИГУРЫ НА ФОНЕ --- */
         .bg-shape {
             position: absolute; background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 2; animation: float 12s infinite ease-in-out;
+            z-index: 2; animation: float 10s infinite ease-in-out;
         }
         .shape1 { width: 100px; height: 100px; top: 15%; left: 10%; border-radius: 20px; }
         .shape2 { width: 150px; height: 150px; bottom: 15%; right: 10%; border-radius: 50%; }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
         }
 
-        /* --- КАРТОЧКА-СТЕКЛО --- */
+        /* --- СТЕКЛЯННАЯ КАРТОЧКА --- */
         .card {
-            /* Эффект матового стекла */
-            background: rgba(255, 255, 255, 0.08); 
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
-            
-            padding: 30px; border-radius: 35px;
-            display: flex; align-items: center; gap: 35px;
-            max-width: 750px; width: 92%; position: relative; z-index: 10;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            padding: 35px; border-radius: 40px;
+            display: flex; align-items: center; gap: 40px;
+            max-width: 800px; width: 92%; position: relative; z-index: 10;
         }
 
         .profile-img {
-            width: 220px; height: 220px;
-            border-radius: 25px; border: 2px solid rgba(255, 255, 255, 0.5);
-            object-fit: cover; box-shadow: 0 0 30px rgba(145, 70, 255, 0.3);
+            width: 240px; height: 240px;
+            border-radius: 30px; border: 2px solid rgba(255, 255, 255, 0.4);
+            object-fit: cover; box-shadow: 0 0 40px rgba(145, 70, 255, 0.4);
         }
 
         .info-side { text-align: left; flex: 1; }
-        h1 { margin: 0; font-size: 42px; font-weight: 900; color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.2); }
-        .subtitle { color: #e0d5ff; margin: 2px 0 12px 0; font-size: 14px; text-transform: uppercase; font-weight: bold; letter-spacing: 2px; }
-        .description { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.8); margin-bottom: 20px; }
+        h1 { margin: 0; font-size: 48px; font-weight: 900; letter-spacing: -1px; }
+        .subtitle { color: #e0d5ff; margin: 2px 0 15px 0; font-size: 14px; text-transform: uppercase; font-weight: bold; letter-spacing: 2px; }
+        .description { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 25px; }
 
-        /* Кнопки */
-        .links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        /* --- КНОПКИ --- */
+        .links { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .link {
             text-align: center; color: white; text-decoration: none;
-            padding: 12px 5px; border-radius: 12px; font-weight: 800;
-            transition: 0.3s; text-transform: uppercase; font-size: 11px;
-            letter-spacing: 0.5px;
-            background: rgba(255, 255, 255, 0.1); /* Полупрозрачные кнопки */
+            padding: 14px 5px; border-radius: 15px; font-weight: 800;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            text-transform: uppercase; font-size: 11px; letter-spacing: 0.8px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .link:hover { background: rgba(255, 255, 255, 0.25); transform: translateY(-3px); }
+        .link:hover { transform: translateY(-4px) scale(1.02); background: rgba(255, 255, 255, 0.25); }
         
-        /* Цвета кнопок (приглушенные стеклянные) */
+        /* Цвета кнопок (стеклянные) */
         .twitch { background: rgba(100, 65, 165, 0.6); }
-        .kick { background: rgba(68, 204, 17, 0.5); color: #fff; }
+        .kick { background: rgba(68, 204, 17, 0.5); }
         .tg { background: rgba(0, 136, 204, 0.5); }
         .yt { background: rgba(204, 0, 0, 0.5); }
         .ds { background: rgba(88, 101, 242, 0.5); }
@@ -94,22 +90,19 @@
         .vk { background: rgba(0, 119, 255, 0.5); }
         .da { background: rgba(245, 196, 0, 0.5); }
 
-        @media (max-width: 700px) {
-            .card { flex-direction: column; text-align: center; }
-            .profile-img { width: 180px; height: 180px; }
+        @media (max-width: 750px) {
+            .card { flex-direction: column; text-align: center; padding: 30px; }
+            .profile-img { width: 200px; height: 200px; }
             .links { grid-template-columns: 1fr; width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Падающие звезды -->
-    <div class="star"></div>
     <div class="star"></div>
     <div class="star"></div>
     <div class="star"></div>
 
-    <!-- Фоновые фигуры -->
     <div class="bg-shape shape1"></div>
     <div class="bg-shape shape2"></div>
 
@@ -127,11 +120,11 @@
                 <a href="https://twitch.tv" target="_blank" class="link twitch">Twitch</a>
                 <a href="https://kick.com" target="_blank" class="link kick">Kick</a>
                 <a href="https://t.me" target="_blank" class="link tg">Telegram</a>
-                <a href="https://youtube.com" target="_blank" class="link yt">YouTube</a>
+                <a href="https://youtube.com/@hero_26-rx8yx?si=jSfdjSD7-BMdtkzE" target="_blank" class="link yt">YouTube</a>
                 <a href="https://discord.gg" target="_blank" class="link ds">Discord</a>
                 <a href="https://boosty.to" target="_blank" class="link boosty">Boosty</a>
                 <a href="https://vk.com" target="_blank" class="link vk">VK Group</a>
-                <a href="https://donationalerts.com" target="_blank" class="link da">Donate</a>
+                <a href="https://www.donationalerts.com/r/morggt" target="_blank" class="link da">Donate</a>
             </div>
         </div>
     </div>
