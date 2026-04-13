@@ -3,95 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morggt - Links Hub</title>
+    <title>Morggt - Premium Hub</title>
     <style>
         body {
             margin: 0; padding: 0;
-            /* Более насыщенный и глубокий градиент */
-            background: linear-gradient(135deg, #0b0e14 0%, #1a1c2c 30%, #302b63 60%, #4b4494 100%);
+            /* Насыщенный сине-фиолетовый градиент */
+            background: radial-gradient(circle at center, #1a1c2c 0%, #4b4494 100%);
             background-attachment: fixed;
             color: white; font-family: 'Segoe UI', Roboto, sans-serif;
             display: flex; justify-content: center; align-items: center; 
             min-height: 100vh; overflow: hidden; position: relative;
         }
 
-        /* Декор фона */
-        .bg-shape {
-            position: absolute; background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(4px); border: 1px solid rgba(255, 255, 255, 0.03);
-            z-index: 1; animation: float 15s infinite ease-in-out;
-        }
-        .shape1 { width: 120px; height: 120px; top: 10%; left: 8%; border-radius: 25px; }
-        .shape2 { width: 180px; height: 180px; bottom: 12%; right: 7%; border-radius: 50%; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-25px) rotate(8deg); }
+        /* Светящиеся пятна на фоне для яркости */
+        .glow {
+            position: absolute; width: 400px; height: 400px;
+            background: rgba(145, 70, 255, 0.15);
+            filter: blur(100px); border-radius: 50%; z-index: 1;
         }
 
-        /* Карточка */
+        /* Компактная, но широкая карточка */
         .card {
-            background: rgba(13, 13, 15, 0.98);
-            padding: 30px; border-radius: 24px;
-            display: flex; align-items: center; gap: 30px;
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            max-width: 620px; width: 92%; position: relative; z-index: 10;
+            background: rgba(10, 10, 12, 0.95);
+            padding: 25px 35px; border-radius: 30px;
+            display: flex; align-items: center; gap: 35px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(123, 97, 255, 0.2);
+            border: 1px solid rgba(123, 97, 255, 0.3);
+            max-width: 750px; width: 90%; position: relative; z-index: 10;
         }
 
+        /* Крупная картинка */
         .profile-img {
-            width: 160px; height: 160px;
-            border-radius: 22px; border: 3px solid #5d3fd3;
-            object-fit: cover; box-shadow: 0 10px 30px rgba(93, 63, 211, 0.3);
+            width: 220px; height: 220px;
+            border-radius: 25px; border: 3px solid #7b61ff;
+            object-fit: cover; 
+            box-shadow: 0 0 30px rgba(123, 97, 255, 0.4);
+            transition: 0.4s;
         }
+        .profile-img:hover { transform: scale(1.03); box-shadow: 0 0 40px rgba(123, 97, 255, 0.6); }
 
         .info-side { text-align: left; flex: 1; }
-        h1 { margin: 0; font-size: 32px; font-weight: 900; letter-spacing: -1px; }
-        .subtitle { color: #7b61ff; margin: 2px 0 12px 0; font-size: 13px; text-transform: uppercase; font-weight: bold; letter-spacing: 1.5px; }
-        .description { font-size: 13px; line-height: 1.5; color: #8e8e9e; margin-bottom: 20px; }
+        h1 { margin: 0; font-size: 36px; font-weight: 900; letter-spacing: -1px; text-shadow: 0 0 15px rgba(255,255,255,0.2); }
+        .subtitle { color: #7b61ff; margin: 2px 0 10px 0; font-size: 14px; text-transform: uppercase; font-weight: bold; letter-spacing: 2px; }
+        .description { font-size: 13px; line-height: 1.4; color: #a0a0b0; margin-bottom: 20px; max-width: 400px; }
 
-        /* Кнопки */
+        /* Компактные кнопки */
         .links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .link {
-            text-align: center; color: rgba(255,255,255,0.9); text-decoration: none;
-            padding: 12px 5px; border-radius: 12px; font-weight: 700;
-            transition: 0.3s ease; text-transform: uppercase; font-size: 11px;
-            letter-spacing: 0.5px;
+            text-align: center; color: white; text-decoration: none;
+            padding: 10px 5px; border-radius: 10px; font-weight: 700;
+            transition: 0.3s; text-transform: uppercase; font-size: 11px;
+            letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.05);
         }
-        .link:hover { transform: translateY(-2px); filter: brightness(1.15); box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+        .link:hover { transform: translateY(-2px); filter: brightness(1.2); box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
         
-        /* Цвета кнопок (приглушенные) */
-        .twitch { background: #4b367c; }
-        .tg { background: #286090; }
-        .ds { background: #404eed; }
-        .vk { background: #3b5998; }
+        /* Цвета кнопок (насыщенные, но благородные) */
+        .twitch { background: #6441a5; }
+        .tg { background: #2481cc; }
+        .ds { background: #5865F2; }
+        .vk { background: #4a69bd; }
+        .kick { background: #41b01e; }
+        .yt { background: #b31217; }
+        .boosty { background: #f15f2c; }
+        .da { background: #e3a200; }
 
-        /* Специальные цвета (мягкие) */
-        .kick { background: #2a5a1e; }  /* Приглушенный зеленый */
-        .yt { background: #8b1a1a; }    /* Приглушенный темно-красный */
-        .boosty { background: #9e552c; } /* Приглушенный оранжевый */
-        .da { background: #a67c00; }    /* Приглушенный золотой */
-
-        @media (max-width: 580px) {
-            .card { flex-direction: column; text-align: center; padding: 25px; }
-            .info-side { width: 100%; }
-            .profile-img { width: 140px; height: 140px; }
-            .links { grid-template-columns: 1fr; }
+        @media (max-width: 700px) {
+            .card { flex-direction: column; text-align: center; padding: 30px 20px; }
+            .profile-img { width: 180px; height: 180px; }
+            .links { grid-template-columns: 1fr; width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-shape shape1"></div>
-    <div class="bg-shape shape2"></div>
+    <div class="glow" style="top: -10%; left: -10%;"></div>
+    <div class="glow" style="bottom: -10%; right: -10%;"></div>
 
     <div class="card">
         <img src="Morggt.png.png" alt="Morggt" class="profile-img">
+        
         <div class="info-side">
             <h1>MORGGT</h1>
             <div class="subtitle">Official Content Creator</div>
             <div class="description">
-                Общаюсь с чатом, создаю движ и ценю каждого в своем комьюнити. Поддерживай и подписывайся!
+                Создаю контент для души, ценю каждого в комьюнити. Поддерживай и подписывайся!
             </div>
             
             <div class="links">
