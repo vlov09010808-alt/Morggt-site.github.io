@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morggt - Official</title>
+    <title>Morggt - Glass Hub</title>
     <style>
         body {
             margin: 0; padding: 0;
-            /* Возвращаем классический сине-фиолетовый градиент */
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 30%, #9146ff 100%);
             background-attachment: fixed;
             color: white; font-family: 'Segoe UI', sans-serif;
@@ -15,70 +14,88 @@
             min-height: 100vh; overflow: hidden; position: relative;
         }
 
-        /* Те самые фигурки на фоне */
+        /* --- Анимация падающих звезд --- */
+        .star {
+            position: absolute;
+            background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.8));
+            height: 2px; width: 100px;
+            z-index: 1; opacity: 0;
+            animation: star-fall 4s infinite ease-in;
+        }
+        .star:nth-child(1) { top: 10%; left: -10%; animation-delay: 0s; }
+        .star:nth-child(2) { top: 30%; left: -15%; animation-delay: 1.5s; }
+        .star:nth-child(3) { top: 50%; left: -10%; animation-delay: 3s; }
+        .star:nth-child(4) { top: 70%; left: -20%; animation-delay: 0.5s; }
+
+        @keyframes star-fall {
+            0% { transform: translateX(0) scaleX(0); opacity: 0; }
+            10% { opacity: 1; transform: translateX(100px) scaleX(1.5); }
+            100% { transform: translateX(120vw) scaleX(1); opacity: 0; }
+        }
+
+        /* --- Фигурки на фоне --- */
         .bg-shape {
             position: absolute; background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 1; animation: float 12s infinite ease-in-out;
+            z-index: 2; animation: float 12s infinite ease-in-out;
         }
-        .shape1 { width: 100px; height: 100px; top: 10%; left: 10%; border-radius: 20px; }
-        .shape2 { width: 150px; height: 150px; bottom: 10%; right: 10%; border-radius: 50%; }
-        .shape3 { width: 80px; height: 80px; top: 60%; left: 5%; transform: rotate(45deg); }
-        .shape4 { width: 250px; height: 2px; top: 25%; right: 5%; background: rgba(255,255,255,0.15); }
+        .shape1 { width: 100px; height: 100px; top: 15%; left: 10%; border-radius: 20px; }
+        .shape2 { width: 150px; height: 150px; bottom: 15%; right: 10%; border-radius: 50%; }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-25px) rotate(10deg); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
         }
 
-        /* Карточка */
+        /* --- КАРТОЧКА-СТЕКЛО --- */
         .card {
-            background: rgba(10, 10, 10, 0.96);
-            padding: 30px; border-radius: 30px;
+            /* Эффект матового стекла */
+            background: rgba(255, 255, 255, 0.08); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            
+            padding: 30px; border-radius: 35px;
             display: flex; align-items: center; gap: 35px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
             max-width: 750px; width: 92%; position: relative; z-index: 10;
         }
 
-        /* Большая картинка */
         .profile-img {
             width: 220px; height: 220px;
-            border-radius: 25px; border: 4px solid #9146ff;
-            object-fit: cover; box-shadow: 0 0 30px rgba(145, 70, 255, 0.4);
+            border-radius: 25px; border: 2px solid rgba(255, 255, 255, 0.5);
+            object-fit: cover; box-shadow: 0 0 30px rgba(145, 70, 255, 0.3);
         }
 
         .info-side { text-align: left; flex: 1; }
-        h1 { margin: 0; font-size: 42px; font-weight: 900; letter-spacing: -1px; }
-        .subtitle { color: #bf94ff; margin: 2px 0 12px 0; font-size: 14px; text-transform: uppercase; font-weight: bold; letter-spacing: 2px; }
-        .description { font-size: 14px; line-height: 1.5; color: #adadb8; margin-bottom: 20px; }
+        h1 { margin: 0; font-size: 42px; font-weight: 900; color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.2); }
+        .subtitle { color: #e0d5ff; margin: 2px 0 12px 0; font-size: 14px; text-transform: uppercase; font-weight: bold; letter-spacing: 2px; }
+        .description { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.8); margin-bottom: 20px; }
 
-        /* Кнопки в две колонки по твоему списку */
-        .links { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 10px; 
-        }
+        /* Кнопки */
+        .links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .link {
             text-align: center; color: white; text-decoration: none;
             padding: 12px 5px; border-radius: 12px; font-weight: 800;
             transition: 0.3s; text-transform: uppercase; font-size: 11px;
             letter-spacing: 0.5px;
+            background: rgba(255, 255, 255, 0.1); /* Полупрозрачные кнопки */
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .link:hover { transform: translateY(-3px); filter: brightness(1.2); box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+        .link:hover { background: rgba(255, 255, 255, 0.25); transform: translateY(-3px); }
         
-        /* Цвета как ты просил: спокойные, но в стиле */
-        .twitch { background: #6441a5; }
-        .kick { background: #44cc11; color: #000; }
-        .tg { background: #0088cc; }
-        .yt { background: #cc0000; }
-        .ds { background: #5865F2; }
-        .boosty { background: #f15f2c; }
-        .vk { background: #0077ff; }
-        .da { background: #f5c400; color: #000; } /* Оставил Donate, раз он был */
+        /* Цвета кнопок (приглушенные стеклянные) */
+        .twitch { background: rgba(100, 65, 165, 0.6); }
+        .kick { background: rgba(68, 204, 17, 0.5); color: #fff; }
+        .tg { background: rgba(0, 136, 204, 0.5); }
+        .yt { background: rgba(204, 0, 0, 0.5); }
+        .ds { background: rgba(88, 101, 242, 0.5); }
+        .boosty { background: rgba(241, 95, 44, 0.5); }
+        .vk { background: rgba(0, 119, 255, 0.5); }
+        .da { background: rgba(245, 196, 0, 0.5); }
 
         @media (max-width: 700px) {
-            .card { flex-direction: column; text-align: center; padding: 25px; }
+            .card { flex-direction: column; text-align: center; }
             .profile-img { width: 180px; height: 180px; }
             .links { grid-template-columns: 1fr; width: 100%; }
         }
@@ -86,11 +103,15 @@
 </head>
 <body>
 
-    <!-- Те самые фигуры -->
+    <!-- Падающие звезды -->
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+
+    <!-- Фоновые фигуры -->
     <div class="bg-shape shape1"></div>
     <div class="bg-shape shape2"></div>
-    <div class="bg-shape shape3"></div>
-    <div class="bg-shape shape4"></div>
 
     <div class="card">
         <img src="Morggt.png.png" alt="Morggt" class="profile-img">
@@ -103,14 +124,13 @@
             </div>
             
             <div class="links">
-                <!-- ТВОИ ССЫЛКИ -->
-                <a href="https://www.twitch.tv/morggt_nya" target="_blank" class="link twitch">Twitch</a>
+                <a href="https://twitch.tv" target="_blank" class="link twitch">Twitch</a>
                 <a href="https://kick.com" target="_blank" class="link kick">Kick</a>
-                <a href="https://t.me/morggt23" target="_blank" class="link tg">Telegram</a>
+                <a href="https://t.me" target="_blank" class="link tg">Telegram</a>
                 <a href="https://youtube.com" target="_blank" class="link yt">YouTube</a>
-                <a href="https://discord.gg/ZfT89W3F" target="_blank" class="link ds">Discord</a>
-                <a href="https://boosty.to/morggt" target="_blank" class="link boosty">Boosty</a>
-                <a href="https://vk.com/club235312167" target="_blank" class="link vk">VK Group</a>
+                <a href="https://discord.gg" target="_blank" class="link ds">Discord</a>
+                <a href="https://boosty.to" target="_blank" class="link boosty">Boosty</a>
+                <a href="https://vk.com" target="_blank" class="link vk">VK Group</a>
                 <a href="https://donationalerts.com" target="_blank" class="link da">Donate</a>
             </div>
         </div>
