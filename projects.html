@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проекты - Morggt</title>
+    <style>
+        body {
+            margin: 0; padding: 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #6a11cb 100%);
+            background-attachment: fixed;
+            color: white; font-family: 'Segoe UI', sans-serif;
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+        }
+        nav { width: 100%; padding: 20px 0; display: flex; justify-content: center; gap: 40px; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(15px); }
+        nav a { color: white; text-decoration: none; font-weight: 600; opacity: 0.7; transition: 0.3s; font-size: 13px; text-transform: uppercase; }
+        nav a:hover { opacity: 1; color: #bf94ff; }
+        
+        .form-container {
+            background: rgba(20, 20, 23, 0.95);
+            padding: 40px; border-radius: 30px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            max-width: 500px; width: 90%; margin-top: 50px;
+        }
+        h2 { text-align: center; color: #bf94ff; margin-bottom: 30px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-size: 14px; color: #adadb8; }
+        input, textarea {
+            width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #333;
+            background: #111; color: white; box-sizing: border-box; font-family: inherit;
+        }
+        textarea { height: 100px; resize: none; }
+        button {
+            width: 100%; padding: 15px; border-radius: 10px; border: none;
+            background: #9146ff; color: white; font-weight: bold; cursor: pointer;
+            text-transform: uppercase; transition: 0.3s;
+        }
+        button:hover { background: #772ce8; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="projects.html">Проекты подписчиков</a>
+        <a href="fans.html">Страница подписчиков</a>
+    </nav>
+
+    <div class="form-container">
+        <h2>Предложить проект</h2>
+        <!-- Замени "YOUR_ID" на ID от Formspree, чтобы сообщения приходили тебе на почту -->
+        <form action="https://formspree.io" method="POST">
+            <div class="form-group">
+                <label>Ваш никнейм</label>
+                <input type="text" name="nickname" placeholder="Напр: User123" required>
+            </div>
+            <div class="form-group">
+                <label>Название проекта</label>
+                <input type="text" name="project_name" placeholder="Напр: Мод для игры" required>
+            </div>
+            <div class="form-group">
+                <label>Описание проекта</label>
+                <textarea name="description" placeholder="Расскажите о проекте..." required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Средство связи</label>
+                <input type="text" name="contact" placeholder="ТГ / ВК / Дискорд" required>
+            </div>
+            <button type="submit">Отправить проект</button>
+        </form>
+    </div>
+</body>
+</html>
